@@ -57,6 +57,14 @@ const AllocationsDAO = function(db){
     this.getByUserIdAndThreshold = (userId, threshold, callback) => {
         const parsedUserId = parseInt(userId);
 
+        /**
+        * Generates a MongoDB query for fetching a user’s allocations, optionally filtered by a stock threshold.
+        * @example
+        * buildAllocationQuery(25)
+        * { $where: 'this.userId == parsedUserId && this.stocks > \'25\'' }
+        * @param {number|string} threshold - Optional stock threshold used to filter the user’s allocations.
+        * @returns {Object} MongoDB query object for retrieving the desired allocation data.
+        **/
         const searchCriteria = () => {
 
             if (threshold) {
