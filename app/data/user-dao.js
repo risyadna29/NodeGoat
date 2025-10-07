@@ -67,6 +67,15 @@ function UserDAO(db) {
         };
 
         // Callback to pass to MongoDB that validates a user document
+        /**
+        * Processes a user lookup result, validates the password, and forwards the outcome to the callback.
+        * @example
+        * handleUserLookup(err, user)
+        * // → void (invokes callback with appropriate arguments)
+        * @param {Error|null} err - Error object from the database query or null.
+        * @param {Object|null} user - Retrieved user object or null if the user does not exist.
+        * @returns {void} The function returns no value; it only triggers the provided callback.
+        **/
         const validateUserDoc = (err, user) => {
 
             if (err) return callback(err, null);
